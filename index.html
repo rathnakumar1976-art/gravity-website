@@ -143,6 +143,17 @@
     .two, .points { grid-template-columns: 1fr; }
     .uses { grid-template-columns: 1fr 1fr; }
   }
+
+  .consent { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: var(--navy); color: #fff; padding: 1rem 0; box-shadow: 0 -6px 24px rgba(20,33,61,0.25); }
+  .consent[hidden] { display: none; }
+  .consent .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; }
+  .consent p { margin: 0; flex: 1 1 22rem; font-size: 0.9375rem; line-height: 1.5; }
+  .consent a { color: #fff; }
+  .consent .btns { display: flex; gap: 0.75rem; }
+  .consent button { font: inherit; font-weight: 700; padding: 0.6rem 1.25rem; border-radius: 0.5rem; border: 2px solid #fff; cursor: pointer; background: #fff; color: var(--navy); }
+  .consent button.no { background: transparent; color: #fff; }
+  .consent button:focus-visible { outline: 3px solid #E9B949; outline-offset: 2px; }
+  footer .links a { margin-right: 1.25rem; }
 </style>
 </head>
 <body>
@@ -385,10 +396,74 @@
 
 <footer>
   <div class="wrap">
+    <p class="links"><a href="privacy.html">Privacy policy</a><a href="#" data-consent-reset>Cookie settings</a></p>
     <p>&copy; 2026 Gravity Infotainment. All rights reserved.</p>
     <p>"Patent pending" means a patent application has been filed and is being examined. It does not mean a patent has been granted.</p>
   </div>
 </footer>
 
+<div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
+  <div class="wrap">
+    <p>We would like to use Google Analytics and Microsoft Clarity to see how visitors use this site, so we can improve it. Nothing is collected unless you accept. <a href="privacy.html">Privacy policy</a></p>
+    <div class="btns">
+      <button type="button" class="no" id="consentNo">Decline</button>
+      <button type="button" id="consentYes">Accept</button>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var GA = "G-JXWMB4H4YQ", CL = "ytu5tklboi", KEY = "gi_consent", loaded = false;
+  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+  function load() {
+    if (loaded) return; loaded = true;
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA;
+    document.head.appendChild(s);
+    gtag("js", new Date()); gtag("config", GA);
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", CL);
+    window.clarity("consent");
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest("a") : null;
+      if (!a) return;
+      var h = a.getAttribute("href") || "";
+      if (h.indexOf("mailto:") === 0) gtag("event", "email_click");
+      else if (h.indexOf("tel:") === 0) gtag("event", "phone_click");
+      else if (h.indexOf("demo.html") !== -1) gtag("event", "demo_open");
+      else if (h.indexOf("ip.html") !== -1) gtag("event", "ip_page_click");
+      else if (h.indexOf("#investors") !== -1) gtag("event", "investors_click");
+    });
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { gtag("event", "section_view", { section: en.target.id }); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll("section[id]").forEach(function (el) { io.observe(el); });
+    }
+  }
+  var choice = get();
+  if (choice === "yes") load();
+  var box = document.getElementById("consent");
+  if (box) {
+    if (choice === null) box.hidden = false;
+    document.getElementById("consentYes").addEventListener("click", function () { set("yes"); box.hidden = true; load(); });
+    document.getElementById("consentNo").addEventListener("click", function () {
+      var was = get(); set("no"); box.hidden = true; if (was === "yes") location.reload();
+    });
+    document.querySelectorAll("[data-consent-reset]").forEach(function (el) {
+      el.addEventListener("click", function (e) { e.preventDefault(); box.hidden = false; });
+    });
+  }
+})();
+</script>
 </body>
 </html>

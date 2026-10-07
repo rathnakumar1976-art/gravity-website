@@ -1308,5 +1308,48 @@ ${i}/${t.length} passed in ${n}s
       <div><p class="small" style="opacity:.7;margin:18px 0 0">${Ya}</p><div class="dots" style="margin:14px 0 20px">${[...Array(e)].map((m,y)=>`<i class="${y===a?"on":""}"></i>`).join("")}</div>
       <div class="row" style="justify-content:space-between"><button class="btn ghost" id="tskip">${s("skip")}</button><button class="btn" id="tnext">${a===e-1?s("getStarted"):s("next")}</button></div></div></div>`,t.querySelector("#tskip").onclick=d,t.querySelector("#tnext").onclick=()=>{a<e-1?(a++,o()):d()};const u=t.querySelector("#tcs");u&&Wa(u,m=>{h.home=m.id,O("home"),t.querySelector("#tcity").textContent=m.name,t.querySelector("#tcplace").textContent=pa(m)}),Aa()};let r=-1;const l=setInterval(()=>{const u=B(),m=t.querySelector("#tstamp");m&&(m.textContent=I(Y(u)));const y=t.querySelector("#tnu"),g=t.querySelector("#tng");if(y){const T=n();y.textContent=T.usual,g.textContent=T.gtp}const p=t.querySelector("#tread"),w=Math.floor(u/1e3);p&&w!==r&&(r=w,p.innerHTML=He(u))},90),d=()=>{clearInterval(l),t.remove(),h.tour=!0,O("tour"),h.cities.length||(h.cities=[h.home]),R()};o()}$e(),Ge(),Qn(),c("#shareTop").onclick=()=>ot(),(function(){const e=/[#&]t=(\d{4}:\d{3}:\d{2}:\d{2}:\d{2})/.exec(decodeURIComponent(location.hash||""));if(e){Ba.tools="convert",$a="tools",R(),dt(c("#tool"),e[1]);return}R()})(),h.tour||sn(),requestAnimationFrame(nt)})();
 </script>
+<script>
+(function () {
+  var GA = "G-JXWMB4H4YQ", CL = "ytu5tklboi", KEY = "gi_consent", loaded = false;
+  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function set(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+  function load() {
+    if (loaded) return; loaded = true;
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA;
+    document.head.appendChild(s);
+    gtag("js", new Date()); gtag("config", GA);
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", CL);
+    window.clarity("consent");
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest("a") : null;
+      if (!a) return;
+      var h = a.getAttribute("href") || "";
+      if (h.indexOf("mailto:") === 0) gtag("event", "email_click");
+      else if (h.indexOf("tel:") === 0) gtag("event", "phone_click");
+      else if (h.indexOf("demo.html") !== -1) gtag("event", "demo_open");
+      else if (h.indexOf("ip.html") !== -1) gtag("event", "ip_page_click");
+      else if (h.indexOf("#investors") !== -1) gtag("event", "investors_click");
+    });
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { gtag("event", "section_view", { section: en.target.id }); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll("section[id]").forEach(function (el) { io.observe(el); });
+    }
+  }
+  var choice = get();
+  if (choice === "yes") load();
+})();
+</script>
 </body>
 </html>
