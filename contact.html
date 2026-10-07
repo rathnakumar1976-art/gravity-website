@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact us | Gravity Infotainment</title>
+<meta name="description" content="Contact Gravity Infotainment, Chennai, about our apps, licensing the Global Time Protocol, or the survey app.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mist: #EEF1F6;
+    --paper: #FFFFFF;
+    --navy: #14213D;
+    --slate: #4A5A78;
+    --line: #CBD3E1;
+    --brass: #A87412;
+    --display: "Bricolage Grotesque", "Trebuchet MS", "Segoe UI", sans-serif;
+    --body: "Atkinson Hyperlegible", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body {
+    margin: 0;
+    background: var(--mist);
+    color: var(--navy);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  a { color: var(--navy); text-underline-offset: 0.2em; }
+  a:hover { color: var(--brass); }
+  a:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--mist);
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap {
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    justify-content: space-between; gap: 0.5rem 2rem;
+    padding-top: 1rem; padding-bottom: 1rem;
+  }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 1.25rem; text-decoration: none; }
+  nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; margin: 0; padding: 0; }
+  nav a { text-decoration: none; color: var(--slate); }
+  nav a:hover { color: var(--navy); text-decoration: underline; }
+
+  .hero { padding: 4.5rem 0 5rem; }
+  .hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    line-height: 1.02; letter-spacing: -0.02em;
+    margin: 0 0 1.5rem;
+  }
+  .hero p { max-width: 34rem; color: var(--slate); font-size: 1.1875rem; margin: 0; }
+  .phone { justify-self: center; width: 100%; max-width: 20rem; }
+  .phone img, .shots img {
+    display: block; width: 100%; height: auto;
+    border: 8px solid var(--navy); border-radius: 2rem;
+    background: var(--paper);
+  }
+  .shots {
+    display: flex; gap: 1.5rem; margin: 0; padding: 0.25rem 0 1rem;
+    list-style: none; overflow-x: auto; scroll-snap-type: x proximity;
+  }
+  .shots li { flex: 1 0 10.5rem; scroll-snap-align: start; }
+  .shots figure { margin: 0; }
+  .shots figcaption { margin-top: 0.75rem; color: var(--slate); font-size: 0.9375rem; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 4rem; }
+  .two h3, .uses h3, .points h3 { font-family: var(--display); font-weight: 500; font-size: 1.375rem; line-height: 1.2; margin: 0 0 0.5rem; }
+  .two p, .uses p, .points p { margin: 0; max-width: 34rem; }
+  .two ul { margin: 0; padding-left: 1.2rem; }
+  .two li { margin-bottom: 0.5rem; }
+  .two ol.steps { margin: 0; padding-left: 1.4rem; }
+  .stamp {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 0.25rem; align-items: flex-start;
+    margin: 0 0 2.5rem; padding: 0; list-style: none;
+    font-family: var(--display); font-weight: 700;
+  }
+  .stamp li { text-align: center; }
+  .stamp b { display: block; font-size: clamp(2rem, 7vw, 4rem); line-height: 1; letter-spacing: -0.02em; }
+  .stamp span { display: block; margin-top: 0.5rem; font-family: var(--body); font-weight: 400; font-size: 0.9375rem; color: var(--slate); }
+  .stamp li.sep b { color: var(--line); padding: 0 0.15em; }
+  .stamp li.tick b { color: var(--brass); }
+  .points { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 4rem; margin: 0; padding: 0; list-style: none; }
+  .uses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem 2rem; margin: 0; padding: 0; list-style: none; }
+  .uses svg { display: block; width: 100%; max-width: 15rem; height: auto; margin-bottom: 1rem; color: var(--navy); }
+  .uses svg .a { stroke: var(--brass); }
+  .uses svg .af { fill: var(--brass); stroke: none; }
+  .uses svg .f { fill: var(--navy); stroke: none; }
+  section.future { background: var(--navy); color: var(--mist); border-top: 0; }
+  section.future h2 { font-size: clamp(2rem, 5vw, 3.5rem); max-width: 18ch; margin-bottom: 1.5rem; }
+  section.future p { max-width: 40rem; margin: 0 0 1rem; color: #D5DCE8; font-size: 1.125rem; }
+  section.future p.slogan { font-family: var(--display); font-weight: 700; font-size: 1.5rem; color: #E9B949; margin-top: 2rem; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  section.block { padding: 4rem 0; border-top: 1px solid var(--line); }
+  section.block.white { background: var(--paper); }
+  h2 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1.1; letter-spacing: -0.01em;
+    margin: 0 0 0.75rem;
+  }
+  .intro { max-width: 40rem; color: var(--slate); margin: 0 0 2.5rem; }
+
+  .rows { margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--navy); }
+  .rows li {
+    display: grid; grid-template-columns: 16rem 1fr 11rem; gap: 1rem 2rem;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--line);
+  }
+  .rows h3 { font-family: var(--display); font-weight: 500; font-size: 1.375rem; line-height: 1.2; margin: 0; }
+  .rows p { margin: 0; max-width: 36rem; }
+  .status { color: var(--brass); font-weight: 700; }
+
+  .note { max-width: 40rem; margin: 2.5rem 0 0; }
+  .contact-mail {
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(1.25rem, 4vw, 2.25rem);
+    overflow-wrap: anywhere;
+  }
+  footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--slate); font-size: 0.9375rem; }
+  footer p { margin: 0 0 0.5rem; max-width: 46rem; }
+
+  @media (max-width: 48rem) {
+    .hero { padding: 3rem 0; }
+    .hero .wrap { grid-template-columns: 1fr; }
+    .phone { justify-self: start; }
+    .rows li { grid-template-columns: 1fr; gap: 0.5rem; }
+    .two, .points { grid-template-columns: 1fr; }
+    .uses { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Gravity Infotainment</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#company">Company</a></li>
+        <li><a href="index.html#why">Global Time</a></li>
+        <li><a href="index.html#survey">Survey app</a></li>
+        <li><a href="ip.html">Intellectual property</a></li>
+        <li><a href="index.html#investors">Investors</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap" style="display:block">
+      <h1>Contact us</h1>
+      <p>Questions about our apps, licensing the Global Time Protocol, or a pilot of the survey app: email or call us and we will reply.</p>
+    </div>
+  </div>
+
+  <section class="block white" id="contact">
+    <div class="wrap">
+      <div class="two">
+        <div>
+          <h2>Email</h2>
+          <p><a class="contact-mail" style="font-size:clamp(1.1rem,2.4vw,1.6rem)" href="mailto:developer@gravityinfotainment.com">developer@gravityinfotainment.com</a></p>
+        </div>
+        <div>
+          <h2>Phone</h2>
+          <p><a class="contact-mail" style="font-size:clamp(1.1rem,2.4vw,1.6rem)" href="tel:+919790972862">+91 97909 72862</a></p>
+          <p>Rathna Kumar, Proprietor</p>
+        </div>
+      </div>
+      <ul class="points" style="margin-top:2.5rem">
+        <li><h3>Product questions and support</h3><p>Tell us which app you are using and what you need help with.</p></li>
+        <li><h3>Licensing and acquisition</h3><p>For the Global Time Protocol patent applications. See <a href="ip.html">intellectual property</a>.</p></li>
+        <li><h3>Investors and partners</h3><p>To discuss investing in or partnering with Gravity Infotainment. See <a href="index.html#investors">for investors</a>.</p></li>
+        <li><h3>Companies and brands</h3><p>To book a demo or discuss a pilot of the survey app.</p></li>
+        <li><h3>Privacy requests</h3><p>To ask about your data or have it deleted.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <h2>About Gravity Infotainment</h2>
+      <p class="intro">Gravity Infotainment was founded in 2019 by Rathna Kumar and is based in Chennai, Tamil Nadu, India. It is a registered Indian business and a registered micro enterprise (MSME).</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 Gravity Infotainment. All rights reserved.</p>
+    <p>"Patent pending" means a patent application has been filed and is being examined. It does not mean a patent has been granted.</p>
+  </div>
+</footer>
+
+</body>
+</html>
