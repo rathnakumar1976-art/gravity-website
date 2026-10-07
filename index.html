@@ -57,8 +57,8 @@
     line-height: 1.02; letter-spacing: -0.02em;
     margin: 0 0 1.5rem;
   }
-  h1 .lead { display: block; font-weight: 500; font-size: clamp(1.4rem, 3vw, 2.25rem); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.5rem; color: var(--slate); }
-  h1 .big { display: block; font-weight: 700; font-size: clamp(2.75rem, 7vw, 5.25rem); line-height: 1; }
+  h1 .lead { display: block; font-weight: 500; font-size: clamp(1.1rem, 2.2vw, 1.6rem); line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.6rem; color: var(--slate); }
+  h1 .big { display: block; font-weight: 700; white-space: nowrap; font-size: min(3.4vw, 2.75rem); line-height: 1.05; }
   h1 .big sup { font-size: 0.3em; vertical-align: top; position: relative; top: 0.4em; margin-left: 0.1em; }
   .hero p { max-width: 34rem; color: var(--slate); font-size: 1.1875rem; margin: 0; }
   .phone { justify-self: center; width: 100%; max-width: 20rem; }
@@ -137,6 +137,7 @@
   @media (max-width: 48rem) {
     .hero { padding: 3rem 0; }
     .hero .wrap { grid-template-columns: 1fr; }
+    h1 .big { font-size: clamp(1.4rem, 6.4vw, 3rem); }
     .phone { justify-self: start; }
     .rows li { grid-template-columns: 1fr; gap: 0.5rem; }
     .two, .points { grid-template-columns: 1fr; }
@@ -167,7 +168,7 @@
   <div class="hero">
     <div class="wrap">
       <div>
-        <h1><span class="lead">One Time for the whole world</span><span class="big">One World<br>One Time<sup>&trade;</sup></span></h1>
+        <h1><span class="lead">One Time for the whole world</span><span class="big">One World One Time<sup>&trade;</sup></span></h1>
         <p>Gravity Infotainment is an independent software studio in Chennai, India. We are the home of the Global Time Protocol, a new way of keeping a single shared time for everyone, and of a new survey app where every answer comes from a real, verified person.</p>
       </div>
       <div class="phone">
